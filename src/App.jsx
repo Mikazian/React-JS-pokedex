@@ -22,11 +22,7 @@ function App() {
         <MyTitle />
       </div>
       <div>
-        <PokemonCard
-          pokemon={currentPokemon}
-          name={currentPokemon.name}
-          imgSrc={currentPokemon.imgSrc}
-        />
+        <PokemonCard {...currentPokemon} />
       </div>
     </>
   );

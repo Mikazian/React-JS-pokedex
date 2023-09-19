@@ -1,14 +1,13 @@
-function PokemonCard(pokemon) {
-  console.log(pokemon);
+function PokemonCard({ name, imgSrc }) {
   return (
     <>
       <figure className="card">
-        {pokemon.imgSrc === undefined || pokemon.imgSrc === "" ? (
+        {imgSrc === undefined || imgSrc === "" ? (
           <p>???</p>
         ) : (
-          <img src={pokemon.imgSrc} alt={pokemon.name} className="card-img" />
+          <img src={imgSrc} alt={name} className="card-img" />
         )}
-        <figcaption>{pokemon.name}</figcaption>
+        <figcaption>{name}</figcaption>
       </figure>
     </>
   );
