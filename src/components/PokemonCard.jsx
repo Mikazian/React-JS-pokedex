@@ -9,7 +9,7 @@ function PokemonCard({ name, imgSrc }) {
         ) : (
           <img src={imgSrc} alt={name} className="card-img" />
         )}
-        <figcaption>{name}</figcaption>
+        <figcaption>{name.charAt(0).toUpperCase() + name.slice(1)}</figcaption>
       </figure>
     </>
   );

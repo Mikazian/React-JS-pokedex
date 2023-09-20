@@ -1,23 +1,24 @@
-function NavBar({
-  handleClickNext,
-  handleClickPrev,
-  pokemonIndex,
-  pokemonList,
-}) {
+// Composant bouton
+function BtnPokemon({ pokemon, handlePokemonClick, index }) {
+  return (
+    <button onClick={() => handlePokemonClick(index)}>
+      {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+    </button>
+  );
+}
+
+// Composant boutons liste de pokémons
+function NavBar({ pokemonList, handlePokemonClick }) {
   return (
     <>
-      <div>
-        {pokemonIndex > 0 ? (
-          <button onClick={handleClickPrev}>Précèdent</button>
-        ) : (
-          ""
-        )}
-        {pokemonIndex < pokemonList.length - 1 ? (
-          <button onClick={handleClickNext}>Suivant</button>
-        ) : (
-          ""
-        )}
-      </div>
+      {pokemonList.map((pokemon, index) => (
+        <BtnPokemon
+          key={index}
+          pokemon={pokemon}
+          index={index}
+          handlePokemonClick={handlePokemonClick}
+        />
+      ))}
     </>
   );
 }

@@ -11,42 +11,61 @@ const pokemonList = [
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
   },
   {
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+  {
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  },
+  {
     name: "mew",
   },
 ];
 
-function App() {
-  const [pokemonIndex, setPokemonIndex] = useState(0);
-  const currentPokemon = pokemonList[pokemonIndex];
-
-  const handleClickNext = () => {
-    if (pokemonIndex >= 0) {
-      setPokemonIndex(pokemonIndex + 1);
-    }
-  };
-
-  const handleClickPrev = () => {
-    if (pokemonIndex <= pokemonList.length - 1) {
-      setPokemonIndex(pokemonIndex - 1);
-    }
+// Composant SwitchPokemon qui permet de changer de pokémon par son index
+function SwitchPokemon({ setPokemonIndex }) {
+  // Fonction qui se déclenche au click qui permet de changer de pokémon par son index
+  const handlePokemonClick = (index) => {
+    setPokemonIndex(index);
   };
 
   return (
-    // Affichage du composant
+    // Retourne un composant Navbar avec la fonction et la constante liste de pokémon
+    <NavBar handlePokemonClick={handlePokemonClick} pokemonList={pokemonList} />
+  );
+}
+
+// Composant parent App qui affiche tous les composants enfants
+function App() {
+  // Destructuration du hook (getter / setter)
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+
+  // Récupére le pokémon actuelle
+  const currentPokemon = pokemonList[pokemonIndex];
+
+  return (
     <>
+      {/* Composant MyTitle */}
       <div>
         <MyTitle />
       </div>
+
+      {/* Composant PokemonCard */}
       <div>
         <PokemonCard {...currentPokemon} />
       </div>
+
+      {/* Composant SwitchPokemon qui contient un composant NavBar */}
       <div>
-        <NavBar
-          handleClickNext={handleClickNext}
-          handleClickPrev={handleClickPrev}
-          pokemonIndex={pokemonIndex}
-          pokemonList={pokemonList}
-        />
+        <SwitchPokemon setPokemonIndex={setPokemonIndex} />
       </div>
     </>
   );
